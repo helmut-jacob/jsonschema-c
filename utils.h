@@ -13,8 +13,8 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <string.h>
-#include "json.h"
-#include "linkhash.h"
+#include <json-c/json.h>
+#include <json-c/linkhash.h>
 
 //terminal colors
 #define ANSI_COLOR_RED     "\x1b[31m"

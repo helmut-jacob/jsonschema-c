@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <string.h>
-#include "json.h"
+#include <json-c/json.h>
 
 /**
  * @brief internal structure to manipulate object easily

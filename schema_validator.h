@@ -14,8 +14,8 @@
 #include <string.h>
 #include <regex.h>
 #include <ctype.h>
-#include "json.h"
-#include "linkhash.h"
+#include <json-c/json.h>
+#include <json-c/linkhash.h>
 
 enum json_keywords {
     /* numeric keywords */

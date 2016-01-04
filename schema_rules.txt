@@ -1,0 +1,48 @@
+*some keywords only apply to some types
+*some keywords are influenced by the presence of other keywords
+
+
+*numeric types:
+    -multipleOf => a JSON number, strictly greater than 0.
+    -maximum => a JSON number.
+    -exclusiveMaximum => a boolean, "maximum" should be present
+    -minimum => a JSON number.
+    -exclusiveMinimum => a boolean, "minimum" should be present
+*strings:
+    -maxLength => an integer, greater than or equal to 0
+    -minLength => an integer, greater than or equal to 0
+    -pattern => regular experession according to ECMA 262 
+*arrays:
+    -additionalItems => a boolean or an object. the object must be a valid JSON schema.
+    -items => an object or an array. if an object it must be a valid JSON schema. if it is an array, items must be object with a valid schema.
+    -maxItems => an integer, greater than or equal to 0.
+    -minItems => an integer, greater than or equal to 0. 
+    -uniqueItems => a boolean.
+*objects:
+    -maxProperties => an integer, greater than or equal to 0.
+    -minProperties => an integer, greater than or equal to 0.
+    -required => an array, at least one element. elements must be strings and unique.
+    -additionalProperties => a boolean or an object. an object must be a valid schema.
+    -properties => an object with a valid schema.
+    -patternProperties => an object. each property name of the object should be a valid regular expression. each property value must be an object with a valid JSON schema.
+    -dependencies => an object, each value must be either an object (valid schema) or an array (at least one element. each element must be a string and unique).
+*any type:
+    -enum => an array. at least one element. elements must be unique.
+    -type => either a string or an array. elements of the array MUST be strings and MUST be unique. string values must be one the seven primitive types defined by the core spec.
+    -allOf => an array. at least one element. elements must be objects with a valid JSON schema.
+    -anyOf => an array. at least one element. elements must be objects with a valid JSON schema.
+    -oneOf => an array. at least one element. elements must be objects with a valid JSON schema.
+    -not => an object with a valid JSON schema.    
+    -definitions => an object with a valid JSON schema.
+    
+*meta keywords:
+    -title => a string.
+    -description => a string.
+    -default => no restrictions.
+    -format: a string.
+        *date-time
+        *email
+        *hostname
+        *ipv4
+        *ipv6
+        *uri

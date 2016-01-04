@@ -1,0 +1,56 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Product set",
+    "type": "array",
+    "items": {
+            "title": "Product",
+            "type": "object",
+            "maxProperties" : 3,
+            "patternProperties":{
+                "price":{
+                    "type":"number",
+                    "minimum": 5,
+                    "exclusiveMinimum": false
+                }
+            },
+            "dependencies": {
+                "id": {
+                    "properties" : {
+                        "tags": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "minItems": 1,
+                            "maxItems" : 3,
+                            "uniqueItems": true
+                        }
+                    }
+                }
+            },
+            "properties": {
+                "id": {
+                    "description": "The unique identifier for a product",
+                    "type": "number",
+                    "allOf":[
+                        { "enum": [1,2,3,4]}
+                        ]
+                },
+                "name": {
+                            "type": "string",
+                            "pattern":"p"
+                },
+                "dimensions": {
+                    "type": "object",
+                    "properties": {
+                        "length": {"type": "number"},
+                        "width": {"type": "number"},
+                        "height": {"type": "number"}
+                    },
+                    "required": ["length", "width", "height"]
+                }
+            },
+            "required": ["id"] 
+    }
+
+}

@@ -25,6 +25,8 @@
 #define ANSI_COLOR_CYAN    "\x1b[36m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
+/* Maximum number of error messages to be reported */
+#define MAX_ERR_MSGS 32
 /**
  * @brief contains error elements
  */
@@ -69,7 +71,7 @@ json_error_values {
     json_format_error
 };
 
-char* json_error_messages[];
+char* json_error_messages[MAX_ERR_MSGS];
 
 /**
  * @brief Prints a colored message in the terminal.
@@ -82,7 +84,7 @@ json_printf_colored(char* color,char * message, ...);
  *          If the last argument is not NULL, it will be filled with the list.
  *          If the first 3 argument are 0 and NULL respectively, they will be ignored and no errors will be added.
  */
-struct error *
+struct json_error *
 json_add_error(int error_value, char* key,int obj_pos,int * num_errors);
 
 /**

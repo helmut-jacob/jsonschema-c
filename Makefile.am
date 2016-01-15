@@ -1,7 +1,6 @@
 SUBDIRS = . tests
 
-
-#libjsonschema_c_la_CFLAGS = -I/usr/local/include/json-c
+libjsonschema_c_la_CFLAGS = -Wall
 libjsonschema_c_la_LDFLAGS = -ljson-c
 
 lib_LTLIBRARIES = libjsonschema-c.la

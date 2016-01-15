@@ -7,20 +7,22 @@ The library is composed of two components: schema validator and instance validat
 
 Currently the library is in the testing phase.
 
-Building the library:
+### Dependencies:
+* C compiler
+* libtool
+* json-c
 
-*Dependencies:
-	*C compiler,
-	*libtool,
-	*json-c
-
-*Building process:
-	*libtoolize
-	*aclocal
-	*automake --add-missing
-	*autoconf
-	*./configure
-	*make
-	*make install (you may need sudo make install)
-*Building tests:
-	*make check
+### Building process:
+```sh 
+	$ libtoolize
+	$ aclocal
+	$ automake --add-missing
+	$ autoconf
+	$ ./configure
+	$ make
+	$ make install (you may need sudo make install)
+```
+#### Building tests:
+```sh
+	$ make check
+```

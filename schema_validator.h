@@ -127,7 +127,7 @@ extern char *json_format_regex[];
  * @brief returns the id of a keyword from the keywords array
  */
 int 
-json_get_keyword_id(char *keyword);
+json_get_keyword_id(const char *keyword);
 
 /**
  * @brief returns a json-c type from a schema object
@@ -139,19 +139,19 @@ json_get_key_type(json_object *obj);
  * @brief Checks that array items are unique
  */
 int 
-json_validate_array_items_uniqueness(json_object *jobj,int type);
+json_validate_array_items_uniqueness(json_object *jobj, const int type);
 
 /**
  * @brief Checks that array items are objects with valid JSON schema
  */
 int
-json_validate_array_items( json_object *jobj);
+json_validate_array_items(json_object *jobj);
 
 /**
  * @brief Checks if the given string is a reserved v4 keyword
  */
 int 
-json_is_keyword(char *keyword);
+json_is_keyword(const char *keyword);
 
 /**
  * @brief Take a string for the keyword_constraints array and return all digits
@@ -169,7 +169,7 @@ json_validate_regex(const char *regex);
  * @brief Validates the parent's type of a keyword
  */
 int
-json_validate_parent_type(char *type,int keyword_position);
+json_validate_parent_type(const char *type, const int keyword_position);
 
 /**
  * @brief Validates the type of a keyword

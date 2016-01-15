@@ -1,56 +1,76 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Product set",
-    "type": "array",
-    "items": {
-            "title": "Product",
-            "type": "object",
-            "maxProperties" : 3,
-            "patternProperties":{
-                "price":{
-                    "type":"number",
-                    "minimum": 5,
-                    "exclusiveMinimum": false
-                }
-            },
-            "dependencies": {
-                "id": {
-                    "properties" : {
-                        "tags": {
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            },
-                            "minItems": 1,
-                            "maxItems" : 3,
-                            "uniqueItems": true
-                        }
-                    }
-                }
-            },
-            "properties": {
-                "id": {
-                    "description": "The unique identifier for a product",
-                    "type": "number",
-                    "allOf":[
-                        { "enum": [1,2,3,4]}
-                        ]
-                },
-                "name": {
-                            "type": "string",
-                            "pattern":"p"
-                },
-                "dimensions": {
-                    "type": "object",
-                    "properties": {
-                        "length": {"type": "number"},
-                        "width": {"type": "number"},
-                        "height": {"type": "number"}
-                    },
-                    "required": ["length", "width", "height"]
-                }
-            },
-            "required": ["id"] 
-    }
-
+"$schema": "http://json-schema.org/draft-04/schema#",
+"title": "Product set",
+"type": "array",
+"items":{
+	"title": "Product",
+	"type": "object",
+	"minProperties":1,
+	"maxProperties" : 4,
+	"patternProperties":{
+		"price":{
+			"type":"number",
+			"minimum": 5,
+			"exclusiveMinimum": false,
+			"maximum": 15,
+			"exclusiveMaximum": false,
+			"not":{ "minimum": 6
+			}
+		}
+	},
+	"dependencies": {
+		"id":{
+			"properties" :{
+				"tags":{
+					"type": "array",
+					"additionalItems": false,
+					"items":{
+						"type": "string"
+					},
+					"uniqueItems": true,
+					"oneOf":[
+						{ "maxItems": 15}
+					]
+				}
+			}
+		}
+	},
+	"properties":{
+		"id":{
+			"description": "The unique identifier for a product",
+			"type": "number",
+			"multipleOf":2,
+			"minimum":1,
+			"exclusiveMinimum": true,
+			"allOf":[
+				{ "enum": [2,4,8,16,18]},
+				{"maximum":16,
+				"exclusiveMaximum":true}
+			]
+		},
+		"name":{
+			"type": "string",
+			"pattern":"p*",
+			"minLength":1,
+			"anyOf":[
+				{ "enum": ["ptest","ptesting"]},
+				{"maxLength":10}
+			]
+		},
+		"dimensions": {
+			"type": "object",
+			"properties": {
+				"length":{
+					"type": "number",
+					"not":{"enum":["1","2","3"]
+					}
+				},
+				"width": {"type": "number"},
+				"height": {"type": "number"}
+			},
+			"required": ["length", "width", "height"]
+		}
+	},
+	"required": ["id"]
+}
 }

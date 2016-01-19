@@ -493,13 +493,11 @@ json_validate_object(json_object *jobj, const int last_pos) {
 }
 
 int 
-json_validate_schema(const char* filename) {
+json_validate_schema(struct json_object *schema) {
 	int res;
-	json_object *schema = json_object_from_file(filename);
-	if(schema == NULL) {
-		json_printf_colored("could not load schema from file.",ANSI_COLOR_RED);
+	if (!schema)
 		return 0;
-	}
+
 	res = json_validate_object(schema,0);
 	if(res != 1) {
 		json_printf_colored(ANSI_COLOR_RED,"Invalid schema!");
@@ -508,4 +506,15 @@ json_validate_schema(const char* filename) {
 		json_printf_colored(ANSI_COLOR_GREEN,"Valid schema!");
 		return 1;
 	}
+}
+
+int 
+json_validate_schema_from_file(const char* filename) {
+	int res;
+	json_object *schema = json_object_from_file(filename);
+	if(schema == NULL) {
+		json_printf_colored("could not load schema from file.",ANSI_COLOR_RED);
+		return 0;
+	}
+	return json_validate_schema(schema);
 }

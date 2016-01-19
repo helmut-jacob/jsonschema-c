@@ -87,9 +87,15 @@ int
 json_validate_object_instance(struct jsonschema_object instance_object);
 
 /**
- * @brief main function
+ * @brief Validate a JSON object against a JSON schema loading both from files
  */
 int
-json_validate_instance(const char *instance_path, const char * schema_path);
+json_validate_instance_from_file(const char *instance_path, const char * schema_path);
+
+/**
+ * @brief Validate a JSON object against a JSON schema
+ */
+int
+json_validate_instance(struct json_object* jso, struct json_object* schema);
 
 #endif

@@ -709,22 +709,13 @@ json_validate_object_instance(struct jsonschema_object instance_object){
 }
 
 int
-json_validate_instance(const char *instance_path, const char * schema_path){
-	/* get the schema and instance objects */
-	json_object *schema = json_object_from_file(schema_path);
-	json_object *instance = json_object_from_file(instance_path);
+json_validate_instance(struct json_object *instance, struct json_object *schema){
+	if (!instance || !schema)
+		return 0;
 
-	if(schema == NULL) {
-		json_printf_colored("could not load schema from file.",ANSI_COLOR_RED);
-		return 0;
-	}
-	if(instance == NULL) {
-		json_printf_colored("could not load instance from file.",ANSI_COLOR_RED);
-		return 0;
-	}
 	/* validate the schema first */
 	json_printf_colored(ANSI_COLOR_YELLOW,"Validating JSON schema...");
-	if(json_validate_schema(schema_path) == 1) {
+	if(json_validate_schema(schema) == 1) {
 		json_printf_colored(ANSI_COLOR_YELLOW,"Validating JSON file...");
 		struct jsonschema_object instance_object;
 		instance_object.instance = instance;
@@ -757,4 +748,22 @@ json_validate_instance(const char *instance_path, const char * schema_path){
 		json_printf_colored(ANSI_COLOR_RED,"\n Invalid JSON schema");
 		return 0;
 	}
+
+}
+
+int
+json_validate_instance_from_file(const char *instance_path, const char * schema_path){
+	/* get the schema and instance objects */
+	json_object *schema = json_object_from_file(schema_path);
+	json_object *instance = json_object_from_file(instance_path);
+
+	if(schema == NULL) {
+		json_printf_colored("could not load schema from file.",ANSI_COLOR_RED);
+		return 0;
+	}
+	if(instance == NULL) {
+		json_printf_colored("could not load instance from file.",ANSI_COLOR_RED);
+		return 0;
+	}
+	return json_validate_instance(instance, schema);
 }

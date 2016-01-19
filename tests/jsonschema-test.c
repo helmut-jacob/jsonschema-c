@@ -16,8 +16,8 @@ int main(int argc, char *argv[])
 {
         printf("Checking schema_validator!\n");
         if(argc > 2)
-            json_validate_instance(argv[1],argv[2]);
+            json_validate_instance_from_file(argv[1],argv[2]);
         else 
-            json_validate_instance("example_instance.txt","example_schema.txt");
+            json_validate_instance_from_file("example_instance.txt","example_schema.txt");
 	return 0;
 }

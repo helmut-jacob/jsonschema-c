@@ -199,6 +199,13 @@ json_validate_keyword(struct lh_entry *keyword, struct lh_table *parent_type);
  * @brief Validates a schema, by checking the provided schema against the rules of the V4 draft. check schema_rules.txt file
  */
 int 
-json_validate_schema(const char *filename);
+json_validate_schema(struct json_object* schema);
+
+/**
+ * @brief Validates a schema, by checking the provided schema against the rules of the V4 draft. check schema_rules.txt file
+ */
+int 
+json_validate_schema_from_file(const char *filename);
+
 
 #endif

@@ -54,5 +54,18 @@ int main(int argc, char *argv[])
 	}
 	json_object_put(js);
 
+	/* type:invalid */
+	js = json_tokener_parse(
+		"{"
+		"\"$schema\":\"http://json-schema.org/draft-04/schema#\","
+		"\"type\":\"invalid\""
+		"}");
+
+	if (json_validate_schema(js)) {
+		printf("Schema with invalid type was validated\n");
+		return 1;
+	}
+	json_object_put(js);
+
 	return 0;
 }

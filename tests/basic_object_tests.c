@@ -32,6 +32,14 @@ int main(int argc, char *argv[])
 	}
 	json_object_put(o);
 
+	/* validate simple int against object schema */
+	o = json_tokener_parse("1");
+	if (json_validate_instance(o, js)) {
+		printf("integer validated against simple object schema\n");
+		return 1;
+	}
+	json_object_put(o);
+
 	json_object_put(js);
 
 	return 0;
